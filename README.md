@@ -19,3 +19,12 @@ Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> mqtt -> ESPr IR�
 # リンク
 * ESPr IR 赤外線リモコン：http://trac.switch-science.com/wiki/ESP-IR
 * RAWで赤外線を送信する方法：https://jiwashin.blogspot.jp/2016/09/ir-remote-control-of-air-conditioner-with-esp8266.html
+
+# 使い方
+
+## ファイルの説明
+* irsend/irsend.ino : ESPr用のスケッチファイル
+
+## リモコンデータの取得方法
+IRremoteESP8266というライブラリのサンプルスケッチ：IRrecvDumpを実行し、rawデータを得る。
+この時ESPr IR 赤外線リモコンの場合、READするピンは5になる。

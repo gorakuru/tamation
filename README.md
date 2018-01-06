@@ -7,13 +7,15 @@ ESPr IR赤外線リモコンを使って家電を制御
 
 # ゴール 
 
-Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> mqtt -> ESPr IRリモコン -> 照明とか
+1. Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> mqtt -> ESPr IRリモコン -> 照明とか
+1. (HTTP) -> WEBサーバー -> MQTT(beebotte) -> raspberry Pi -> mqtt -> ESPr IRリモコン -> 照明とか
 
 各部屋にESPrを置くので、RPIから ESP間はmqttで。各部屋に置くESPrは全く同じソースコードでOK。
 
+
 # 現状
 
-(HTTP) -> ESPr IRリモコン -> 照明とか
+Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> **HTTP** -> ESPr IRリモコン -> 照明とか
 
 
 # リンク
@@ -24,6 +26,7 @@ Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> mqtt -> ESPr IR�
 
 ## ファイルの説明
 * irsend/irsend.ino : ESPr用のスケッチファイル
+* reciver.py : rpi上で動かす、IFTTTからmqtt経由でコマンドをもらい、LAN上のESPrに転送
 
 ## リモコンデータの取得方法
 IRremoteESP8266というライブラリのサンプルスケッチ：IRrecvDumpを実行し、rawデータを得る。

@@ -1,9 +1,6 @@
 # tamation
 田村家の赤外線リモコン用
-
-
 ESPr IR赤外線リモコンを使って家電を制御
-
 
 # ゴール 
 
@@ -17,10 +14,12 @@ ESPr IR赤外線リモコンを使って家電を制御
 
 Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> **HTTP** -> ESPr IRリモコン -> 照明とか
 
+とりあえずベタ書きで動くことを確認できたので、もうちょっとちゃんと書きたい。
 
 # リンク
 * ESPr IR 赤外線リモコン：http://trac.switch-science.com/wiki/ESP-IR
 * RAWで赤外線を送信する方法：https://jiwashin.blogspot.jp/2016/09/ir-remote-control-of-air-conditioner-with-esp8266.html
+* mqttとRESTが使える無料のメッセージングサービス : https://beebotte.com
 
 # 使い方
 

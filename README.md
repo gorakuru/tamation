@@ -20,6 +20,7 @@ Google home mini -> IFTTT -> MQTT(beebotte) -> raspberry Pi -> **HTTP** -> ESPr 
 * ESPr IR 赤外線リモコン：http://trac.switch-science.com/wiki/ESP-IR
 * RAWで赤外線を送信する方法：https://jiwashin.blogspot.jp/2016/09/ir-remote-control-of-air-conditioner-with-esp8266.html
 * mqttとRESTが使える無料のメッセージングサービス : https://beebotte.com
+* beebotteとIFTTTの組み合わせ : https://qiita.com/mayfair/items/e761c788a9d8787bc610
 
 # 使い方
 

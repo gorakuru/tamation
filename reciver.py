@@ -36,6 +36,8 @@ def decodeAction(a):
 		return "Power"
 	if a in {'On', 'ON', 'on', u'オン'}:
 		return "On"
+	if a in {'Off', 'OFF', 'off', u'オフ'}:
+		return "Off"
 	if a in {'Button', 'button', 'ボタン', u'オン'}:
 		return "Button"
 	print "action decode error"
@@ -71,6 +73,7 @@ def on_message(client, data, msg):
     j = json.loads((msg.payload))
     for r in j['data']:
     	sendAction(r)
+
 
 client = mqtt.Client()
 client.on_connect = on_connect

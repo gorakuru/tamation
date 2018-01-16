@@ -5,8 +5,9 @@ import paho.mqtt.client as mqtt
 import json
 import requests
 
-token = "****"
-remocon = "****"
+token = "token:token_*****"
+remocon = "***.***.***.***"
+remocon2 = "***.***.***.***"
 
 
 class decodeErr(Exception):
@@ -60,6 +61,9 @@ def sendAction(record):
 		return
 	else:
 		req = "http://"+remocon+"/?t="+target
+		print(req)
+		requests.get(req)
+		req = "http://"+remocon2+"/?t="+target
 		print(req)
 		requests.get(req)
 

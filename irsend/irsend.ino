@@ -8,9 +8,9 @@
 
 /* PubSubClient.h の中の MQTT_MAX_PACKET_SIZE を大きくする */
 
-const char *ssid = "*********";
-const char *password = "*********";
-const char *token = "token:*********";
+const char *ssid = "***********";
+const char *password = "***********";
+const char *token = "token:***********";
 const char *mqttserver = "mqtt.beebotte.com";
 
 
@@ -18,14 +18,17 @@ const char *mqttserver = "mqtt.beebotte.com";
 IRsend irsend(14);
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
+char device[20];
+
 
 
 // メッセージを受信したときのコールバック関数
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println("callback invoked");
 
-  StaticJsonBuffer<2048> jsonBuffer;
-  uint16_t codebuffer[100];
+  const size_t bufferSize = JSON_ARRAY_SIZE(1) + JSON_ARRAY_SIZE(200) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(5) + 630;
+  DynamicJsonBuffer jsonBuffer(bufferSize);
+  uint16_t codebuffer[200];
 
   payload[length] = '\0';
   String msg = String((char*) payload);
@@ -46,7 +49,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // コード取得
   int codelength =  object["data"][0]["code"].size();
   Serial.println(codelength);
-  if (codelength < 100) {
+  if (codelength < 200) {
     for (int i = 0; i < codelength; i++) {
       codebuffer[i] = object["data"][0]["code"][i];
     }
@@ -79,6 +82,8 @@ void setup() {
 
   client.setServer(mqttserver, 1883);
   client.setCallback(callback);
+
+  String(ESP.getChipId()).toCharArray(device, 20);
 }
 
 
@@ -87,7 +92,7 @@ void loop() {
   if (!!!client.connected()) {
     Serial.print("Reconnecting client to ");
     Serial.println(mqttserver);
-    while (!!!client.connect("test", token, "")) {
+    while (!!!client.connect(device , token, "")) {
       Serial.print(".");
       delay(500);
     }

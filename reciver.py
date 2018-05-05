@@ -5,11 +5,7 @@ import paho.mqtt.client as mqtt
 import json
 import requests
 
-token = "*****"
-remocon = [
-	"**.**.**.**",
-	"**.**.**.**",
-	"**.**.**.**"]
+token = "*********"
 
 
 class decodeErr(Exception):
@@ -62,19 +58,15 @@ def sendAction(record):
 	except decodeErr:
 		return
 	else:
-		ret = requests.post("http://api.beebotte.com/v1/data/publish/IFTTT/ir?token=" + token,
-			data=json.dumps({"data":[commandToArray(target)]}),
-			headers={"Content-Type":"application/json"}
-		)
-		for r in remocon:
-			req = "http://"+r+"/?t="+target
-			print(req)
-			try:
-				requests.get(req)
-			except Exception as ex:
-				print "requests err"
-				print "    " + r
-				print "    " + str(ex)
+		try:
+			ret = requests.post("http://api.beebotte.com/v1/data/publish/IFTTT/ir?token=" + token,
+				data=json.dumps({"data":[commandToArray(target)]}),
+				headers={"Content-Type":"application/json"}		
+			)
+		except Exception as ex:
+			print "requests err"
+			print "    " + r
+			print "    " + str(ex)
 		print ret.text
 		print(commandToArray(target))
 
